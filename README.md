@@ -1,1 +1,1 @@
-# blog-ejs
+# Simple EJS Blog
