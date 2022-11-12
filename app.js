@@ -19,6 +19,14 @@ app.get('/', (req, res) => {
   res.render('home', { content: homeStartingContent });
 });
 
+app.get('/about', (req, res) => {
+  res.render('about', { content: aboutContent });
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact', { content: contactContent });
+});
+
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
