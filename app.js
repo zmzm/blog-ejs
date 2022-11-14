@@ -1,4 +1,5 @@
 const express = require('express');
+const { get, compose, lowerCase, kebabCase } = require('lodash/fp');
 const bodyParser = require('body-parser');
 
 const posts = [];
@@ -33,9 +34,18 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', ({ body: { postTitle, postBody } }, res) => {
-  const post = { title: postTitle, body: postBody };
+  const post = { id: kebabCase(postTitle), title: postTitle, body: postBody };
   posts.push(post);
   res.redirect('/');
+});
+
+app.get('/posts/:postId', (req, res) => {
+  const postId = compose(kebabCase, lowerCase, get(['params', 'postId']))(req);
+  const foundPost = posts.find(({ id }) => id === postId);
+
+  if (foundPost) {
+    res.render('post', { post: foundPost });
+  }
 });
 
 app.listen(3000, () => {
