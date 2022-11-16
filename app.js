@@ -1,8 +1,9 @@
 const express = require('express');
-const { get, compose, lowerCase, kebabCase } = require('lodash/fp');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const { get, compose, lowerCase, kebabCase } = require('lodash/fp');
+const Post = require('./model/post');
 
-const posts = [];
 const homeStartingContent =
   'Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.';
 const aboutContent =
@@ -17,7 +18,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+mongoose.connect('mongodb://localhost:27017/blogDB', { useNewUrlParser: true });
+
+app.get('/', async (req, res) => {
+  const posts = Post.find({});
   res.render('home', { content: homeStartingContent, posts });
 });
 
@@ -34,14 +38,15 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', ({ body: { postTitle, postBody } }, res) => {
-  const post = { id: kebabCase(postTitle), title: postTitle, body: postBody };
-  posts.push(post);
+  const post = { title: postTitle, body: postBody };
+  const newPost = new Post(post);
+  newPost.save();
   res.redirect('/');
 });
 
 app.get('/posts/:postId', (req, res) => {
   const postId = compose(kebabCase, lowerCase, get(['params', 'postId']))(req);
-  const foundPost = posts.find(({ id }) => id === postId);
+  const foundPost = [].find(({ id }) => id === postId);
 
   if (foundPost) {
     res.render('post', { post: foundPost });
