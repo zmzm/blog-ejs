@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const { get, compose, lowerCase, kebabCase } = require('lodash/fp');
+const { get } = require('lodash/fp');
 const Post = require('./model/post');
 
 const homeStartingContent =
@@ -40,13 +40,16 @@ app.get('/compose', (req, res) => {
 app.post('/compose', ({ body: { postTitle, postBody } }, res) => {
   const post = { title: postTitle, body: postBody };
   const newPost = new Post(post);
-  newPost.save();
-  res.redirect('/');
+  newPost.save((err) => {
+    if (!err) {
+      res.redirect('/');
+    }
+  });
 });
 
-app.get('/posts/:postId', (req, res) => {
-  const postId = compose(kebabCase, lowerCase, get(['params', 'postId']))(req);
-  const foundPost = [].find(({ id }) => id === postId);
+app.get('/posts/:postId', async (req, res) => {
+  const postId = get(['params', 'postId'], req);
+  const foundPost = await Post.findById(postId).exec();
 
   if (foundPost) {
     res.render('post', { post: foundPost });
