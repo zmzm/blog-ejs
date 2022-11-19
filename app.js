@@ -21,7 +21,7 @@ app.use(express.static('public'));
 mongoose.connect('mongodb://localhost:27017/blogDB', { useNewUrlParser: true });
 
 app.get('/', async (req, res) => {
-  const posts = Post.find({});
+  const posts = await Post.find({});
   res.render('home', { content: homeStartingContent, posts });
 });
 
@@ -38,7 +38,7 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', ({ body: { postTitle, postBody } }, res) => {
-  const post = { title: postTitle, body: postBody };
+  const post = { title: postTitle, content: postBody };
   const newPost = new Post(post);
   newPost.save((err) => {
     if (!err) {

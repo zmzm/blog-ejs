@@ -6,7 +6,7 @@
   <% posts.forEach((post) => { %>
     <h3><%= post.title %></h3>
     <div class="post-summary">
-      <p><%= post.body %></p>
+      <p><%= post.content %></p>
       <a href="/posts/<%= post.id %>" class="link-primary">Read more</a>
     </div>
   <% }) %>

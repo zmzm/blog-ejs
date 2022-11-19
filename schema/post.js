@@ -7,4 +7,4 @@ const postSchema = new Schema({
   content: String,
 });
 
-export default postSchema;
+module.exports = postSchema;
