@@ -56,6 +56,18 @@ app.get('/posts/:postId', async (req, res) => {
   }
 });
 
+app.get('/auth', (req, res) => {
+  res.render('auth');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
