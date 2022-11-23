@@ -65,6 +65,15 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
+app.post('/login', async (req, res) => {
+  const user = get(['body'], req);
+  const foundUser = await User.findOne({ ...user }).exec();
+
+  if (foundUser) {
+    res.redirect('/');
+  }
+});
+
 app.get('/register', (req, res) => {
   res.render('register');
 });
