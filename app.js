@@ -67,11 +67,15 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
   const user = get(['body'], req);
-  const foundUser = await User.findOne({ ...user }).exec();
+  User.findOne({ email: user.email }, (err, foundUser) => {
+    if (err) {
+      return null;
+    }
 
-  if (foundUser) {
-    res.redirect('/');
-  }
+    if (foundUser && foundUser.password === user.password) {
+      res.redirect('/');
+    }
+  });
 });
 
 app.get('/register', (req, res) => {
