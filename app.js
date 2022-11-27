@@ -68,13 +68,19 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   const user = get(['body'], req);
   User.findOne({ email: user.email }, (err, foundUser) => {
-    if (err) {
+    if (err || !foundUser) {
       return null;
     }
 
-    if (foundUser && foundUser.password === user.password) {
-      res.redirect('/');
-    }
+    foundUser.comparePassword(user.password, (comparationError, isMatch) => {
+      if (comparationError) {
+        return null;
+      }
+
+      if (isMatch) {
+        res.redirect('/');
+      }
+    });
   });
 });
 
