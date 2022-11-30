@@ -2866,11 +2866,6 @@ gauge@^3.0.0:
     strip-ansi "^6.0.1"
     wide-align "^1.1.2"
 
-generaterr@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/generaterr/-/generaterr-1.5.0.tgz#b0ceb6cc5164df2a061338cc340a8615395c52fc"
-  integrity sha512-JgcGRv2yUKeboLvvNrq9Bm90P4iJBu7/vd5wSLYqMG5GJ6SxZT46LAAkMfNhQ+EK3jzC+cRBm7P8aUWYyphgcQ==
-
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
@@ -3533,6 +3528,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
+normalize-port@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/normalize-port/-/normalize-port-1.0.0.tgz#21b24d168e56c2853199a970bd3133a59e8a5c16"
+  integrity sha512-T1kIq9yABl778UmJwfM0NkOvzf8E+s49opzjKFSSGFGd4EL9aWHS1rV8WIb8jxubrEIm5P7z6O1GQoPjtpuTPg==
+
 npmlog@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-5.0.1.tgz#f06678e80e29419ad67ab964e0fa69959c1eb8b0"
@@ -3695,15 +3695,6 @@ passport-google-oauth20@^2.0.0:
   integrity sha512-KSk6IJ15RoxuGq7D1UKK/8qKhNfzbLeLrG3gkLZ7p4A6DBCcv7xpyQwuXtWdpyR0+E0mwkpjY1VfPOhxQrKzdQ==
   dependencies:
     passport-oauth2 "1.x.x"
-
-passport-local-mongoose@^7.1.2:
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/passport-local-mongoose/-/passport-local-mongoose-7.1.2.tgz#0a89876ef8a8e18787e59a39740e61c5653eb25e"
-  integrity sha512-hNLIKi/6IhElr/PhOze8wLDh7T4+ZYhc8GFWYApLgG7FrjI55tuGZELPtsUBqODz77OwlUUf+ngPgHN09zxGLg==
-  dependencies:
-    generaterr "^1.5.0"
-    passport-local "^1.0.0"
-    scmp "^2.1.0"
 
 passport-local@^1.0.0:
   version "1.0.0"
@@ -4019,11 +4010,6 @@ schema-utils@^4.0.0:
     ajv "^8.8.0"
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
-
-scmp@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/scmp/-/scmp-2.1.0.tgz#37b8e197c425bdeb570ab91cc356b311a11f9c9a"
-  integrity sha512-o/mRQGk9Rcer/jEEw/yw4mwo3EU/NvYvp577/Btqrym9Qy5/MdWGBqipbALgd2lrdWTJ5/gqDusxfnQBxOxT2Q==
 
 semver@^5.6.0, semver@^5.7.0:
   version "5.7.1"

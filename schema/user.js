@@ -1,6 +1,5 @@
 const { Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
-const passportLocalMongoose = require('passport-local-mongoose');
 
 require('dotenv').config();
 
@@ -10,8 +9,6 @@ const userSchema = new Schema({
   email: String,
   password: String,
 });
-
-userSchema.plugin(passportLocalMongoose);
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('password')) return next();
